@@ -4,10 +4,10 @@ This module provides the AgentMarketplacePanel class for browsing,
 downloading, and managing community AI skills.
 """
 
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel  # pylint: disable=import-error
 
 
-class AgentMarketplacePanel(QWidget):
+class AgentMarketplacePanel(QWidget):  # pylint: disable=too-few-public-methods
     """Panel for browsing and managing community AI skills.
 
     Provides a UI for discovering, downloading, and managing

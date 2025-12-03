@@ -4,10 +4,10 @@ This module provides the OnboardingPanel class for guiding new users
 through the initial setup and introduction to the platform.
 """
 
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel  # pylint: disable=import-error
 
 
-class OnboardingPanel(QWidget):
+class OnboardingPanel(QWidget):  # pylint: disable=too-few-public-methods
     """Onboarding wizard panel for new users.
 
     Provides a welcome screen and setup guidance for users

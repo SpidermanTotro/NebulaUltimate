@@ -4,11 +4,13 @@ This module provides the MainWindow class, the primary application window
 for the Nebula Ultimate development platform.
 """
 
-from PyQt5.QtWidgets import QMainWindow, QTextEdit, QAction, QMenuBar, QInputDialog
+from PyQt5.QtWidgets import (  # pylint: disable=import-error
+    QMainWindow, QTextEdit, QAction, QMenuBar, QInputDialog
+)
 from nebula.ai_hub import AIHub
 
 
-class MainWindow(QMainWindow):
+class MainWindow(QMainWindow):  # pylint: disable=too-few-public-methods
     """Main application window for Nebula Ultimate.
 
     Provides the primary user interface including a text editor area
