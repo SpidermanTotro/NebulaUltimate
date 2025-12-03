@@ -1,1 +1,0 @@
-# You can add extra UI panels here (e.g., plugin panel, project explorer, etc.)

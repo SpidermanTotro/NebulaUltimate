@@ -20,15 +20,18 @@ NebulaUltimate/
 │   ├── build_system.py         # Build/run orchestration
 │   ├── test_runner.py          # Hook/execute tests
 │   ├── doc_system.py           # Docs, markdown, onboarding integration
-│   ├── marketplace.py          # (plugin/AI skill store, community hub)
+│   └── marketplace.py          # (plugin/AI skill store, community hub)
 ├── /ai_agents
+│   ├── README.md
 │   ├── copilot.py
+│   ├── copilot_agent.py
 │   ├── bugfinder.py
+│   ├── chatgpt.py
+│   ├── converter.py
 │   ├── docgen.py
-│   ├── translator.py
 │   ├── designhelper.py         # (AI code → UI/UX convertor skill)
 │   ├── optimizer.py            # (AI code optimization skill)
-│   └── README.md
+│   └── translator.py
 ├── /models
 │   ├── ollama/
 │   ├── starcoder/

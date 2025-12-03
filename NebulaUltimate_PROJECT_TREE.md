@@ -5,32 +5,40 @@ NebulaUltimate/
 ├── LICENSE
 ├── .gitignore
 ├── /nebula
-│   ├── __init__.py
-│   ├── app.py
-│   ├── ai_hub.py
-│   ├── plugin_manager.py
-│   ├── /ui
-│   │   ├── __init__.py
-│   │   ├── main_window.py
-│   │   └── panels.py
+│   ├── __init__.py
+│   ├── app.py
+│   ├── ai_hub.py
+│   ├── plugin_manager.py
+│   └── /ui
+│       ├── __init__.py
+│       ├── main_window.py
+│       ├── panels.py
+│       ├── agent_marketplace.py
+│       └── onboarding.py
 ├── /ai_agents
-│   ├── copilot.py
-│   ├── bugfinder.py
-│   ├── docgen.py
-│   ├── translator.py
+│   ├── README.md
+│   ├── copilot.py
+│   ├── copilot_agent.py
+│   ├── bugfinder.py
+│   ├── chatgpt.py
+│   ├── converter.py
+│   ├── docgen.py
+│   ├── designhelper.py
+│   ├── optimizer.py
+│   └── translator.py
 ├── /models
-│   └── # (place LLM model files, e.g., Ollama or GPT4All, here)
+│   └── # (place LLM model files, e.g., Ollama or GPT4All, here)
 ├── /plugins
-│   └── sample_plugin.py
+│   └── sample_plugin.py
 ├── /assets
-│   └── nebula-logo.png
+│   └── nebula-logo.png
 ├── /workspace
-│   └── # (user project space)
+│   └── # (user project space)
 ├── /docs
-│   ├── onboard.md
-│   ├── skills.md
-│   ├── architecture.md
+│   ├── onboard.md
+│   ├── skills.md
+│   └── architecture.md
 ├── /tests
-│   ├── test_ai_hub.py
-│   ├── test_copilot_agent.py
-│   └── # (expand tests as needed)
+│   ├── test_ai_hub.py
+│   ├── test_copilot_agent.py
+│   └── # (expand tests as needed)
