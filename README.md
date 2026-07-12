@@ -29,3 +29,7 @@ See [architecture.md](architecture.md) for details on project structure.
 - [Developer Guidelines](dev_guidelines.md)
 - [Skills Reference](skills.md)
 - [Changelog](changelog.md)
+
+## Historical material
+
+The [legacy installation page](docs/archive/legacy-install-page.html) from the earlier malformed-name repository is preserved for reference. Its download links and feature claims are historical and are not verified instructions for the current project.
