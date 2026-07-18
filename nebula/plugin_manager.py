@@ -5,7 +5,8 @@ plugin modules from a specified directory.
 """
 
 import os
-import importlib.util
+
+from nebula.dynamic_loader import load_python_module
 
 
 class PluginManager:
@@ -27,6 +28,7 @@ class PluginManager:
         """
         self.plugin_dir = os.path.abspath(plugin_dir)
         self.plugins = []
+        self.load_errors = {}
         self.load_plugins()
 
     def load_plugins(self):
@@ -36,15 +38,18 @@ class PluginManager:
         as available plugins.
         """
         self.plugins.clear()
-        if not os.path.exists(self.plugin_dir):
+        self.load_errors.clear()
+        if not os.path.isdir(self.plugin_dir):
             return
-        for fname in os.listdir(self.plugin_dir):
+        for fname in sorted(os.listdir(self.plugin_dir)):
             if fname.endswith('.py') and not fname.startswith('_'):
                 name = fname[:-3]
                 path = os.path.join(self.plugin_dir, fname)
-                spec = importlib.util.spec_from_file_location(name, path)
-                mod = importlib.util.module_from_spec(spec)
-                spec.loader.exec_module(mod)
+                try:
+                    mod = load_python_module(name, path)
+                except Exception as exc:  # pylint: disable=broad-exception-caught
+                    self.load_errors[name] = f"{type(exc).__name__}: {exc}"
+                    continue
                 self.plugins.append(mod)
 
     def list_plugins(self):
@@ -54,3 +59,7 @@ class PluginManager:
             list: List of plugin module name strings.
         """
         return [mod.__name__ for mod in self.plugins]
+
+    def list_load_errors(self):
+        """Return a copy of plugin import errors keyed by plugin name."""
+        return dict(self.load_errors)

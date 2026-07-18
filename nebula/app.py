@@ -3,6 +3,8 @@
 This module provides the main entry point for launching the application.
 """
 
+import sys
+
 from PyQt5 import QtWidgets
 from nebula.ui.main_window import MainWindow
 
@@ -13,7 +15,6 @@ def launch():
     Creates the Qt application instance, displays the main window,
     and starts the event loop.
     """
-    import sys
     app = QtWidgets.QApplication(sys.argv)
     win = MainWindow()
     win.show()

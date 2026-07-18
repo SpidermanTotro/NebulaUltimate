@@ -4,8 +4,9 @@ This module provides the AIHub class for discovering, loading,
 and interacting with AI agent plugins.
 """
 
-import importlib.util
 import os
+
+from nebula.dynamic_loader import load_python_module
 
 
 class AIHub:
@@ -26,6 +27,7 @@ class AIHub:
             agent_dir (str): Path to the directory containing agent modules.
         """
         self.agents = {}
+        self.load_errors = {}
         self.agent_dir = os.path.abspath(agent_dir)
         self.discover_agents()
 
@@ -36,15 +38,18 @@ class AIHub:
         and loads them as available agents.
         """
         self.agents.clear()
-        if not os.path.exists(self.agent_dir):
+        self.load_errors.clear()
+        if not os.path.isdir(self.agent_dir):
             return
-        for fname in os.listdir(self.agent_dir):
+        for fname in sorted(os.listdir(self.agent_dir)):
             if fname.endswith('.py') and not fname.startswith('_'):
                 agent_name = fname[:-3]
                 path = os.path.join(self.agent_dir, fname)
-                spec = importlib.util.spec_from_file_location(agent_name, path)
-                mod = importlib.util.module_from_spec(spec)
-                spec.loader.exec_module(mod)
+                try:
+                    mod = load_python_module(agent_name, path)
+                except Exception as exc:  # pylint: disable=broad-exception-caught
+                    self.load_errors[agent_name] = f"{type(exc).__name__}: {exc}"
+                    continue
                 if hasattr(mod, 'respond'):
                     self.agents[agent_name] = mod
 
@@ -69,3 +74,7 @@ class AIHub:
             list: List of agent name strings.
         """
         return list(self.agents.keys())
+
+    def list_load_errors(self):
+        """Return a copy of agent import errors keyed by agent name."""
+        return dict(self.load_errors)
